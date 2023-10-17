@@ -1,13 +1,14 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {Icon} from '@rneui/themed';
-import {useNavigation} from '@react-navigation/native';
+import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigation} from '../../App';
 
 const TrackItem = () => {
   const navigation = useNavigation<StackNavigation>();
+  const {colors} = useTheme();
   return (
-    <View style={styles.card}>
+    <View style={[styles.card, {backgroundColor: `${colors.background}`}]}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.album}
@@ -17,9 +18,9 @@ const TrackItem = () => {
         />
       </View>
       <View style={styles.textContainer}>
-        <Text style={styles.secondaryText}>TrackItem</Text>
-        <Text style={styles.mainText}>TrackItem</Text>
-        <Text style={styles.secondaryText}>TrackItem</Text>
+        <Text style={{color: `${colors.text}`}}>TrackItem</Text>
+        <Text style={{color: `${colors.primary}`}}>TrackItem</Text>
+        <Text style={{color: `${colors.text}`}}>TrackItem</Text>
       </View>
       <View style={styles.optionsContainer}>
         <Icon
@@ -40,8 +41,8 @@ export default TrackItem;
 const styles = StyleSheet.create({
   card: {
     borderRadius: 8,
-    backgroundColor: '#061F66',
     flexDirection: 'row',
+    marginVertical: 8,
   },
   imageContainer: {
     flex: 1,
@@ -55,8 +56,6 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   optionsContainer: {flex: 1},
-  mainText: {color: '#ffffff'},
-  secondaryText: {color: '#C9CFDE'},
   album: {
     width: 60,
     height: 60,

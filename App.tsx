@@ -15,7 +15,6 @@ import {
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Profile from './src/screens/Profile';
 import Detail from './src/screens/Detail';
-import {Text, View} from 'react-native';
 
 type RootStackParamList = {
   Home: undefined;

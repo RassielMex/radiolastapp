@@ -1,19 +1,22 @@
 import {View} from 'react-native';
 import React from 'react';
-import TrackItem from '../components/TrackItem';
-import {useDeviceOrientationChange} from 'react-native-orientation-locker';
+import TouchableTrackItem from '../components/TouchableTrackItem';
+//import {useDeviceOrientationChange} from 'react-native-orientation-locker';
 
 const Home = () => {
-  useDeviceOrientationChange(o => {
-    console.log(o);
-  });
+  // const [isPortrait, setIsPortrait] = useState(true);
+  // useDeviceOrientationChange(orientation => {
+  //   setIsPortrait(true);
+  //   if (orientation !== 'PORTRAIT' && orientation !== 'PORTRAIT-UPSIDEDOWN') {
+  //     setIsPortrait(false);
+  //   }
+  // });
   return (
     <View>
-      <TrackItem />
+      <TouchableTrackItem />
+      <TouchableTrackItem />
     </View>
   );
 };
 
 export default Home;
-
-//const styles = StyleSheet.create({});
