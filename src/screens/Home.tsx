@@ -1,6 +1,6 @@
 import {View} from 'react-native';
 import React from 'react';
-import TouchableTrackItem from '../components/TouchableTrackItem';
+import TrackItem from '../components/TrackItem';
 //import {useDeviceOrientationChange} from 'react-native-orientation-locker';
 
 const Home = () => {
@@ -13,8 +13,10 @@ const Home = () => {
   // });
   return (
     <View>
-      <TouchableTrackItem />
-      <TouchableTrackItem />
+      <TrackItem />
+      <TrackItem />
+      <TrackItem />
+      <TrackItem />
     </View>
   );
 };

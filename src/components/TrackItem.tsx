@@ -1,38 +1,56 @@
-import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import React, {useState} from 'react';
 import {Icon} from '@rneui/themed';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigation} from '../../App';
 
 const TrackItem = () => {
+  const [pressed, setPressed] = useState(false);
   const navigation = useNavigation<StackNavigation>();
   const {colors} = useTheme();
+  const handlePress = () => {
+    console.log('press');
+    setPressed(true);
+  };
+
+  const handlePressOut = () => {
+    console.log('pressout');
+    setPressed(false);
+  };
+
   return (
-    <View style={[styles.card, {backgroundColor: `${colors.background}`}]}>
-      <View style={styles.imageContainer}>
-        <Image
-          style={styles.album}
-          source={{
-            uri: 'https://reactnative.dev/img/tiny_logo.png',
-          }}
-        />
+    <Pressable onPress={handlePress} onPressOut={handlePressOut}>
+      <View
+        style={[
+          styles.card,
+          {backgroundColor: `${colors.card}`},
+          pressed && styles.pressed,
+        ]}>
+        <View style={styles.imageContainer}>
+          <Image
+            style={styles.album}
+            source={{
+              uri: 'https://reactnative.dev/img/tiny_logo.png',
+            }}
+          />
+        </View>
+        <View style={styles.textContainer}>
+          <Text style={{color: `${colors.text}`}}>TrackItem</Text>
+          <Text style={{color: `${colors.primary}`}}>TrackItem</Text>
+          <Text style={{color: `${colors.text}`}}>TrackItem</Text>
+        </View>
+        <View style={styles.optionsContainer}>
+          <Icon
+            name="dots-three-horizontal"
+            type="entypo"
+            color="#517fa4"
+            onPress={() => {
+              navigation.navigate('Details');
+            }}
+          />
+        </View>
       </View>
-      <View style={styles.textContainer}>
-        <Text style={{color: `${colors.text}`}}>TrackItem</Text>
-        <Text style={{color: `${colors.primary}`}}>TrackItem</Text>
-        <Text style={{color: `${colors.text}`}}>TrackItem</Text>
-      </View>
-      <View style={styles.optionsContainer}>
-        <Icon
-          name="dots-three-horizontal"
-          type="entypo"
-          color="#517fa4"
-          onPress={() => {
-            navigation.navigate('Details');
-          }}
-        />
-      </View>
-    </View>
+    </Pressable>
   );
 };
 
@@ -44,6 +62,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginVertical: 8,
   },
+  pressed: {backgroundColor: 'rgba(2, 6, 28,0.5)'},
   imageContainer: {
     flex: 1,
     justifyContent: 'center',
