@@ -1,55 +1,57 @@
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {Icon} from '@rneui/themed';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigation} from '../../App';
+import {FavProvider} from '../context/FavoriteContext';
 
 const TrackItem = () => {
-  const [pressed, setPressed] = useState(false);
+  const [favorite, setFavorite] = useState(false);
   const navigation = useNavigation<StackNavigation>();
   const {colors} = useTheme();
+  const {favorites, addFavorites} = useContext(FavProvider);
   const handlePress = () => {
-    console.log('press');
-    setPressed(true);
+    navigation.navigate('Details');
+    addFavorites('1');
+    console.log(favorites);
   };
 
-  const handlePressOut = () => {
-    console.log('pressout');
-    setPressed(false);
+  const handlePressFav = () => {
+    setFavorite(prevState => !prevState);
   };
 
   return (
-    <Pressable onPress={handlePress} onPressOut={handlePressOut}>
-      <View
-        style={[
-          styles.card,
-          {backgroundColor: `${colors.card}`},
-          pressed && styles.pressed,
-        ]}>
-        <View style={styles.imageContainer}>
-          <Image
-            style={styles.album}
-            source={{
-              uri: 'https://reactnative.dev/img/tiny_logo.png',
-            }}
-          />
+    <Pressable onPress={handlePress}>
+      {({pressed}) => (
+        <View
+          style={[
+            styles.card,
+            {backgroundColor: `${colors.card}`},
+            pressed && styles.pressed,
+          ]}>
+          <View style={styles.imageContainer}>
+            <Image
+              style={styles.album}
+              source={{
+                uri: 'https://reactnative.dev/img/tiny_logo.png',
+              }}
+            />
+          </View>
+          <View style={styles.textContainer}>
+            <Text style={{color: `${colors.text}`}}>TrackItem</Text>
+            <Text style={{color: `${colors.primary}`}}>TrackItem</Text>
+            <Text style={{color: `${colors.text}`}}>TrackItem</Text>
+          </View>
+          <View style={styles.optionsContainer}>
+            <Icon
+              name={favorite ? 'heart' : 'heart-outline'}
+              type="ionicon"
+              color="#517fa4"
+              onPress={handlePressFav}
+            />
+          </View>
         </View>
-        <View style={styles.textContainer}>
-          <Text style={{color: `${colors.text}`}}>TrackItem</Text>
-          <Text style={{color: `${colors.primary}`}}>TrackItem</Text>
-          <Text style={{color: `${colors.text}`}}>TrackItem</Text>
-        </View>
-        <View style={styles.optionsContainer}>
-          <Icon
-            name="dots-three-horizontal"
-            type="entypo"
-            color="#517fa4"
-            onPress={() => {
-              navigation.navigate('Details');
-            }}
-          />
-        </View>
-      </View>
+      )}
     </Pressable>
   );
 };
