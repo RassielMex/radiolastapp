@@ -1,9 +1,9 @@
 import React, {createContext, PropsWithChildren, useState} from 'react';
 
-interface FavProviderType {
+type FavProviderType = {
   favorites: string[];
   addFavorites: (_id: string) => void;
-}
+};
 
 export const FavProvider = createContext<FavProviderType>({
   favorites: [],
