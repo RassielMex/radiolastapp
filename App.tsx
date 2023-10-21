@@ -15,12 +15,14 @@ import {
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Profile from './src/screens/Profile';
 import Detail from './src/screens/Detail';
-import HeaderIcon from './src/components/HeaderIcon';
 import FavContext from './src/context/FavoriteContext';
+import Favorites from './src/screens/Favorites';
+import HeaderIconRight from './src/components/HeaderIconRight';
 
 type RootStackParamList = {
   Home: undefined;
   Profile: undefined;
+  Favorites: undefined;
   Details: {id: string} | undefined;
 };
 
@@ -33,6 +35,7 @@ const MyTheme = {
   colors: {
     ...DefaultTheme.colors,
     primary: 'rgb(255, 45, 85)',
+    text: 'rgba(255,255,255,0.5)',
     background: 'rgb(2, 6, 28)',
     card: 'rgb(3, 6, 32 )',
   },
@@ -62,13 +65,18 @@ function App(): JSX.Element {
             component={Home}
             options={{
               title: 'Top Tracks This week',
-              headerRight: HeaderIcon,
+              headerRight: HeaderIconRight,
             }}
           />
           <Stack.Screen
             name="Details"
             component={Detail}
             options={({route}) => ({title: route.params?.id})}
+          />
+          <Stack.Screen
+            name="Favorites"
+            component={Favorites}
+            options={{title: 'Favorites'}}
           />
           <Stack.Screen name="Profile" component={Profile} />
         </Stack.Navigator>
