@@ -11,6 +11,7 @@ import {
   NavigationContainer,
   NavigationProp,
   DefaultTheme,
+  RouteProp,
 } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Profile from './src/screens/Profile';
@@ -18,15 +19,17 @@ import Detail from './src/screens/Detail';
 import FavContext from './src/context/FavoriteContext';
 import Favorites from './src/screens/Favorites';
 import HeaderIconRight from './src/components/HeaderIconRight';
+import {ITrack} from './src/models/Track';
 
 type RootStackParamList = {
   Home: undefined;
   Profile: undefined;
   Favorites: undefined;
-  Details: {id: string} | undefined;
+  Details: {track: ITrack};
 };
 
 export type StackNavigation = NavigationProp<RootStackParamList>;
+export type StackRoute = RouteProp<RootStackParamList>;
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -71,7 +74,7 @@ function App(): JSX.Element {
           <Stack.Screen
             name="Details"
             component={Detail}
-            options={({route}) => ({title: route.params?.id})}
+            options={({route}) => ({title: route.params?.track.name})}
           />
           <Stack.Screen
             name="Favorites"

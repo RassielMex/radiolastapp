@@ -9,13 +9,13 @@ type TrackItemProps = {
   track: ITrack;
 };
 const TrackItem = (props: TrackItemProps) => {
-  console.log(props.track.album);
+  //console.log(props.track.album);
   const [favorite, setFavorite] = useState(false);
   const navigation = useNavigation<StackNavigation>();
   const {colors} = useTheme();
 
   const handlePress = () => {
-    navigation.navigate('Details');
+    navigation.navigate('Details', {track: props.track});
   };
 
   const handlePressFav = () => {
