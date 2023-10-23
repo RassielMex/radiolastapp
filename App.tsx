@@ -19,13 +19,13 @@ import Detail from './src/screens/Detail';
 import FavContext from './src/context/FavoriteContext';
 import Favorites from './src/screens/Favorites';
 import HeaderIconRight from './src/components/HeaderIconRight';
-import {ITrack} from './src/models/Track';
+import {ITrackDetail} from './src/models/Track';
 
 type RootStackParamList = {
   Home: undefined;
   Profile: undefined;
   Favorites: undefined;
-  Details: {track: ITrack};
+  Details: {track: ITrackDetail};
 };
 
 export type StackNavigation = NavigationProp<RootStackParamList>;
@@ -74,7 +74,8 @@ function App(): JSX.Element {
           <Stack.Screen
             name="Details"
             component={Detail}
-            options={({route}) => ({title: route.params?.track.name})}
+            options={{title: ''}}
+            // options={({route}) => ({title: route.params?.track.name})}
           />
           <Stack.Screen
             name="Favorites"

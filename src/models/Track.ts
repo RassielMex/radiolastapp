@@ -5,7 +5,13 @@ export interface ITrack {
   url: string;
   stremeable: string;
   artist: IArtist;
+}
+
+export interface ITrackDetail extends ITrack {
   album: IAlbum;
+  wiki: IWiki;
+  toptags: ITopTag;
+  duration: string;
 }
 
 interface IImage {
@@ -19,16 +25,29 @@ interface IArtist {
   mbid: string;
 }
 
+interface IWiki {
+  published: string;
+}
+
+interface ITopTag {
+  tag: ITag[];
+}
+
+interface ITag {
+  name: string;
+}
+
 interface IDataTrack {
   track?: ITrack[];
 }
 
 export interface ITrackInfo {
-  track: ITrack;
+  track: ITrackDetail;
 }
 
 interface IAlbum {
   image: IImage[];
+  title: string;
 }
 
 export interface ITopTracks {
