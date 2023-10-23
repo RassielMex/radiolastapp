@@ -3,10 +3,10 @@ import React, {useState} from 'react';
 import {Icon} from '@rneui/themed';
 import {useNavigation, useTheme} from '@react-navigation/native';
 import {StackNavigation} from '../../App';
-import {ITrack} from '../models/Track';
+import {ITrackDetail} from '../models/Track';
 
 type TrackItemProps = {
-  track: ITrack;
+  track: ITrackDetail;
 };
 const TrackItem = (props: TrackItemProps) => {
   //console.log(props.track.album);

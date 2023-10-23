@@ -2,11 +2,11 @@ import {ScrollView} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import TrackItem from '../components/TrackItem';
 import axios from 'axios';
-import {ITrackInfo, ITopTracks, ITrack} from '../models/Track';
+import {ITrackInfo, ITopTracks, ITrackDetail} from '../models/Track';
 //import {useDeviceOrientationChange} from 'react-native-orientation-locker';
 
 const Home = () => {
-  const [topTracks, setTracks] = useState<ITrack[]>([]);
+  const [topTracks, setTracks] = useState<ITrackDetail[]>([]);
   const URL_API =
     'https://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=mexico&api_key=1e7d92dcc50c26b7c94c6763cd0ff3ff&format=json&limit=5';
   useEffect(() => {

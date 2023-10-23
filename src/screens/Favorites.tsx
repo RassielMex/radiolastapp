@@ -1,17 +1,21 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView} from 'react-native';
 import React, {useContext} from 'react';
 import {FavProvider} from '../context/FavoriteContext';
+import TrackItem from '../components/TrackItem';
 
 const Favorites = () => {
-  const {favorites, addFavorites} = useContext(FavProvider);
+  const {favorites} = useContext(FavProvider);
 
   return (
-    <View>
-      <Text>Favorites</Text>
-    </View>
+    <ScrollView>
+      {favorites.length > 0 &&
+        favorites.map((track, index) => {
+          return <TrackItem track={track} key={track?.name + index} />;
+        })}
+    </ScrollView>
   );
 };
 
 export default Favorites;
 
-const styles = StyleSheet.create({});
+//const styles = StyleSheet.create({});
